@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React, { useEffect } from "react"
 import { useRouter } from "next/navigation";
+import { Toaster, toast  } from 'react-hot-toast';
+
 
 import axios from "axios";
 
@@ -35,9 +37,14 @@ export default function LoginPage() {
 
             const response = await axios.post("/api/users/login", user)
             console.log("Login Successfully", response.data);
+            toast.success("Login Successfulluy", { duration: 5000 });
             router.push("/profile")
             
         } catch (error : any) {
+
+
+            toast.error("Something Went Kharab" , { duration: 5000 })
+
 
             console.log("Login failed", error.message);
             
@@ -49,6 +56,7 @@ export default function LoginPage() {
     }
 
     return (
+       
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-center text-white text-2xl">Login</h1>
             <hr />
@@ -83,6 +91,7 @@ export default function LoginPage() {
             </span>
             </p>
         </div>
+    
 
     );
 }

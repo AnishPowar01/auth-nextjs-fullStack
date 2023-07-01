@@ -4,6 +4,7 @@ import React, { useEffect } from "react"
 import { useRouter } from "next/navigation";
 
 import axios from "axios";
+import { Toaster, toast } from 'react-hot-toast';
 
 export default function LoginPage() {
     const router = useRouter()
@@ -37,10 +38,12 @@ export default function LoginPage() {
 
             console.log(response.data)
 
+          
+            toast.success("Signup SuccessFully" , { duration: 5000 });
             router.push("/login")
             
         } catch (error : any) {
-
+            toast.error("Something Went Kharab" , { duration: 5000 })
             console.log("Signup Failed", error.message)
         }finally{
             setLoading(false)
@@ -49,6 +52,8 @@ export default function LoginPage() {
     }
 
     return (
+       
+        
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-center text-white text-2xl">SignUp</h1>
             <hr />
@@ -85,5 +90,6 @@ export default function LoginPage() {
             </Link>
             </div>
         </div>
+
     );
 }
